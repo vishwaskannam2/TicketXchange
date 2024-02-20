@@ -1,2 +1,2 @@
-# OLX
-A simple Ecommerce website using HTML,CSS,JavaScript and Bootstrap
+TicketXchange
+simple web ticket selling and buying Ecom website using html,css,java script,bootstrap
