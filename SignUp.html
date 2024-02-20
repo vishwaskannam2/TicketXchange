@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>TicketXchange</title>
+    <link rel="shortcut icon" href="images/Logo.png" />
+      <!--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">-->
+       <link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+
+  <div class="container">
+    <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2"><img src="images/Logo.png" class="img-responsive" ></div>
+        <div class="col-lg-5 col-md-5 col-sm-5" id="p2">TicketXchange</div>
+        <a href="index.html"><div class="col-lg-2 col-md-3 col-sm-2" id="btn1"><button id="btn-1">Home</button></a><br><br><input type="search" name="search" id="search12"></div>
+        <div class="col-lg-3 col-md-3 col-sm-3" id="btn2"><button id="btn-2" onclick="check()">Submit an Ad</button><br><br><input type="button" id="search" name="search" onclick="search()" value="Search"></div> 
+    </div><!-- /.row -->
+    <hr>
+  </div><!-- /.container -->
+
+  <div class="container" id="ad">
+            <center><h1 id="heading"></h1></center><hr />
+            
+  </div>
+
+<div class="container" id="cont">
+  <h2>Sign Up</h2>
+  
+    <div class="form-group">
+      <label for="email">Name:</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter Name" name="name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+    </div>
+    <div class="form-group">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control" id="password" placeholder="Enter password" name="pwd">
+    </div>
+    <button onclick="signUp()" class="btn btn-default">Submit</button> Already have an account click <a href="logIn.html">here </a>
+  
+</div>
+<br>
+<br>
+<footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h2 class="logo"><a href="#"><img src="images/Logo.png" class="img-responsive" ></a></h2>
+                </div>
+                <div class="col-sm-2">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="SignUp.html">Sign up</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="logIn.html">LogIn</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-sm-5">
+                    <div class="social-networks">
+                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                    </div>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d934.1997040787893!2d78.48571869580148!3d17.60446600283492!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb850bb545e95b%3A0x4367e509f5ff38e5!2sCMR%20College%20of%20Engineering%20%26%20Technology%2C%20Hyderabad%20(CMRCET%2FCMRK)!5e0!3m2!1sen!2sin!4v1708247615323!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" width="450" class="img-responsive" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+        <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCQ-QDiwFi3nrKkoSj-ghf1aAb9Lo56aoA",
+        authDomain: "ticketxchange-fd694.firebaseapp.com",
+        databaseURL: "https://ticketxchange-fd694.firebaseio.com",
+        projectId: "ticketxchange-fd694",
+        storageBucket: "ticketxchange-fd694.appspot.com",    
+        messagingSenderId: "857541548379"
+      };
+      firebase.initializeApp(config);
+        </script>
+
+        <script src="app.js"></script>
+        <!--
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>-->
+        <script type="text/javascript" src="bootstrap-3.3.7-dist/js/jquery-3.2.1.js"></script>
+        <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript"></script>
+
+</body>
+</html>

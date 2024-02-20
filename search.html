@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+ 
+
+<style>
+.form{
+          background-color:rgba(192,192,192,0.3);
+          width:500px;
+          text-align: center;
+          opacity: 0.7;
+          height:400px;
+          padding:20px;
+          margin-left: 100px;
+        
+  }
+
+
+
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+hr {
+    border: 1px solid #cfcbcb;
+    margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
+
+button:hover {
+    opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+    padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 360px) {
+    .cancelbtn, .signupbtn {
+       width: 100%;
+    }
+  
+}
+
+    
+
+#btn{
+
+    display:none;
+}
+#after{
+text-align: center;
+    display:none;
+} 
+
+#subbtn{
+    display:none;
+}
+
+#in{
+    display:none;
+}
+
+#para1{
+    display:none;
+}
+
+.p:hover{
+    color:red;
+}
+
+.main{
+    display:flex;
+}
+.child1{
+    flex:7;
+    
+}
+.child2{
+    flex:3;
+  ;
+}
+
+#hide{
+    display:none;
+}
+#add{
+    display:none;
+}
+
+td,th{text-align: center;}
+
+
+#searchanother{
+    display:none;
+}
+
+
+</style>
+<link type="text/css" rel="stylesheet" media="(min-width: 360px)" href="style.css">
+</head>
+
+
+
+<!--_________________body start-->
+<body style="background-color: rgb(207, 250, 208);">
+    <div class="container">
+        <h1>Search by category</h1>
+    <select id="select" class="form-control input-medium">
+        <option>car</option>
+        <option>mobile</option>
+        <option>job</option>
+        </select>
+        <button  id="searchbtn" onclick="order()" style="width:200px;">search</button>
+        <button  id="searchanother" onclick="reload()" style="width:200px;">search another add</button>
+
+        <ul id="unorder" style="list-style: none;">
+
+        </ul>
+        <button id="bt" onClick="back()" style="width:100px;">Back</button>
+    </div>
+
+  
+
+</body>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCQ-QDiwFi3nrKkoSj-ghf1aAb9Lo56aoA",
+        authDomain: "ticketxchange-fd694.firebaseapp.com",
+        databaseURL: "https://ticketxchange-fd694.firebaseio.com",
+        projectId: "ticketxchange-fd694",
+        storageBucket: "ticketxchange-fd694.appspot.com",    
+        messagingSenderId: "857541548379"
+      };
+      firebase.initializeApp(config);
+    </script>
+   <script>
+       // Initialize Cloud Firestore through Firebase
+var db = firebase.firestore();
+   function order(){
+    var selec=document.getElementById('select');
+     selec.style.display="none";
+
+     var searchbtn=document.getElementById('searchbtn');
+     searchbtn.style.display="none";
+
+     var searchanother=document.getElementById('searchanother');
+     searchanother.style.display="block";
+    var sel= document.getElementById('select').value;
+            /*console.log(doc.data().image);*/
+
+            if(sel=="mobile"){
+
+                db.collection("advertise").where("category", "==", "mobile").get().then((res) => {
+        res.forEach((doc) => {
+            var im= document.createElement('img');
+            im.setAttribute("src",doc.data().image);
+            im.setAttribute("width","200px");
+
+            var ul= document.getElementById('unorder');
+            var li1d= document.createElement('li');
+           var li2d= document.createElement('li');
+            var li2= document.createElement('li');
+            var li3d= document.createElement('li');
+            var li3= document.createElement('li');
+            var li4d= document.createElement('li');
+            var li4= document.createElement('li');
+            var li5d= document.createElement('li');
+            var li5= document.createElement('li');
+            var li6d= document.createElement('li');
+            var li6= document.createElement('li');
+
+            li1d.appendChild(im);
+            li2d.innerHTML="NAME :";
+            li2.innerHTML= doc.data().person;
+            li3d.innerHTML="MODEL :";
+            li3.innerHTML= doc.data().model;
+            li4d.innerHTML="YEAR :";
+            li4.innerHTML= doc.data().year;
+            li5d.innerHTML="ID :";
+            li5.innerHTML= doc.data().id;
+            li6d.innerHTML="DESCRIPTION :";
+            li6.innerHTML= doc.data().description;
+
+            
+            ul.appendChild(li1d);
+            ul.appendChild(li2d);
+            ul.appendChild(li2);
+            ul.appendChild(li3d);
+            ul.appendChild(li3);
+            ul.appendChild(li4d);
+            ul.appendChild(li4);
+            ul.appendChild(li5d);
+            ul.appendChild(li5);
+            ul.appendChild(li6d);
+            ul.appendChild(li6);
+
+            });
+   });
+
+            }//if1
+            
+         else if(sel=="car"){
+            db.collection("advertise").where("category", "==", "car").get().then((res) => {
+        res.forEach((doc) => {
+            var im= document.createElement('img');
+            im.setAttribute("src",doc.data().image);
+            im.setAttribute("width","200px");
+
+            var ul= document.getElementById('unorder');
+            var li1d= document.createElement('li');
+           var li2d= document.createElement('li');
+            var li2= document.createElement('li');
+            var li3d= document.createElement('li');
+            var li3= document.createElement('li');
+            var li4d= document.createElement('li');
+            var li4= document.createElement('li');
+            var li5d= document.createElement('li');
+            var li5= document.createElement('li');
+            var li6d= document.createElement('li');
+            var li6= document.createElement('li');
+
+            li1d.appendChild(im);
+            li2d.innerHTML="NAME :";
+            li2.innerHTML= doc.data().person;
+            li3d.innerHTML="MODEL :";
+            li3.innerHTML= doc.data().model;
+            li4d.innerHTML="YEAR :";
+            li4.innerHTML= doc.data().year;
+            li5d.innerHTML="ID :";
+            li5.innerHTML= doc.data().id;
+            li6d.innerHTML="DESCRIPTION :";
+            li6.innerHTML= doc.data().description;
+
+            
+            ul.appendChild(li1d);
+            ul.appendChild(li2d);
+            ul.appendChild(li2);
+            ul.appendChild(li3d);
+            ul.appendChild(li3);
+            ul.appendChild(li4d);
+            ul.appendChild(li4);
+            ul.appendChild(li5d);
+            ul.appendChild(li5);
+            ul.appendChild(li6d);
+            ul.appendChild(li6);
+
+            });
+   });
+           
+            }//if2  
+            
+           else if(sel=="job"){
+            db.collection("advertise").where("category", "==", "job").get().then((res) => {
+        res.forEach((doc) => {
+            var im= document.createElement('img');
+            im.setAttribute("src",doc.data().image);
+            im.setAttribute("width","200px");
+
+            var ul= document.getElementById('unorder');
+            var li1d= document.createElement('li');
+           var li2d= document.createElement('li');
+            var li2= document.createElement('li');
+            var li3d= document.createElement('li');
+            var li3= document.createElement('li');
+            var li4d= document.createElement('li');
+            var li4= document.createElement('li');
+            var li5d= document.createElement('li');
+            var li5= document.createElement('li');
+            var li6d= document.createElement('li');
+            var li6= document.createElement('li');
+
+            li1d.appendChild(im);
+            li2d.innerHTML="NAME :";
+            li2.innerHTML= doc.data().person;
+            li3d.innerHTML="MODEL :";
+            li3.innerHTML= doc.data().model;
+            li4d.innerHTML="YEAR :";
+            li4.innerHTML= doc.data().year;
+            li5d.innerHTML="ID :";
+            li5.innerHTML= doc.data().id;
+            li6d.innerHTML="DESCRIPTION :";
+            li6.innerHTML= doc.data().description;
+
+            
+            ul.appendChild(li1d);
+            ul.appendChild(li2d);
+            ul.appendChild(li2);
+            ul.appendChild(li3d);
+            ul.appendChild(li3);
+            ul.appendChild(li4d);
+            ul.appendChild(li4);
+            ul.appendChild(li5d);
+            ul.appendChild(li5);
+            ul.appendChild(li6d);
+            ul.appendChild(li6);
+
+            });
+   });
+    
+               
+                }//if3
+
+             else{
+alert("we don't have add");
+
+             }
+            
+            
+
+       
+}
+
+function reload(){
+    location.reload();
+}
+   
+function back(){
+    window.location.href='index.html';
+} 
+   </script> 
+
+</html>
